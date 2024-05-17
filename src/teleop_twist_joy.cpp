@@ -341,31 +341,40 @@ void TeleopTwistJoy::Impl::sendCmdVelMsg(const sensor_msgs::msg::Joy::SharedPtr 
 
 void TeleopTwistJoy::Impl::joyCallback(const sensor_msgs::msg::Joy::SharedPtr joy_msg)
 {
-  if (enable_turbo_button >= 0 &&
-      static_cast<int>(joy_msg->buttons.size()) > enable_turbo_button &&
-      joy_msg->buttons[enable_turbo_button])
-  {
-    sendCmdVelMsg(joy_msg, "turbo");
-  }
-  else if (!require_enable_button ||
-	   (static_cast<int>(joy_msg->buttons.size()) > enable_button &&
-           joy_msg->buttons[enable_button]))
-  {
-    sendCmdVelMsg(joy_msg, "normal");
-  }
-  else
-  {
-    // When enable button is released, immediately send a single no-motion command
-    // in order to stop the robot.
-    if (!sent_disable_msg)
+  try {
+    if (enable_turbo_button >= 0 &&
+        static_cast<int>(joy_msg->buttons.size()) > enable_turbo_button &&
+        joy_msg->buttons[enable_turbo_button])
     {
-      // Initializes with zeros by default.
-      auto cmd_vel_msg = std::make_unique<geometry_msgs::msg::Twist>();
-      cmd_vel_pub->publish(std::move(cmd_vel_msg));
-      sent_disable_msg = true;
+      sendCmdVelMsg(joy_msg, "turbo");
     }
+    else if (!require_enable_button ||
+             (static_cast<int>(joy_msg->buttons.size()) > enable_button &&
+             joy_msg->buttons[enable_button]))
+    {
+      sendCmdVelMsg(joy_msg, "normal");
+    }
+    else
+    {
+      // When enable button is released, immediately send a single no-motion command
+      // in order to stop the robot.
+      if (!sent_disable_msg)
+      {
+        // Initializes with zeros by default.
+        auto cmd_vel_msg = std::make_unique<geometry_msgs::msg::Twist>();
+        cmd_vel_pub->publish(std::move(cmd_vel_msg));
+        sent_disable_msg = true;
+      }
+    }
+  } catch (const std::exception& e) {
+    // Handle the exception gracefully, for example, by logging an error message.
+    RCLCPP_ERROR(this->get_logger(), "Exception in joyCallback: %s", e.what());
+  } catch (...) {
+    // Handle any other unexpected exceptions.
+    RCLCPP_ERROR(this->get_logger(), "Unknown exception in joyCallback");
   }
 }
+
 
 }  // namespace teleop_twist_joy
 
