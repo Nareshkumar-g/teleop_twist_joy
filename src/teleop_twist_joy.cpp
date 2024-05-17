@@ -338,6 +338,7 @@ void TeleopTwistJoy::Impl::sendCmdVelMsg(const sensor_msgs::msg::Joy::SharedPtr 
   sent_disable_msg = false;
 }
 
+
 void TeleopTwistJoy::Impl::joyCallback(const sensor_msgs::msg::Joy::SharedPtr joy_msg)
 {
   if (enable_turbo_button >= 0 &&
@@ -352,18 +353,18 @@ void TeleopTwistJoy::Impl::joyCallback(const sensor_msgs::msg::Joy::SharedPtr jo
   {
     sendCmdVelMsg(joy_msg, "normal");
   }
-  // else
-  // {
-  //   // When enable button is released, immediately send a single no-motion command
-  //   // in order to stop the robot.
-  //   if (!sent_disable_msg)
-  //   {
-  //     // Initializes with zeros by default.
-  //     auto cmd_vel_msg = std::make_unique<geometry_msgs::msg::Twist>();
-  //     cmd_vel_pub->publish(std::move(cmd_vel_msg));
-  //     sent_disable_msg = true;
-  //   }
-  // }
+  else
+  {
+    // When enable button is released, immediately send a single no-motion command
+    // in order to stop the robot.
+    if (!sent_disable_msg)
+    {
+      // Initializes with zeros by default.
+      auto cmd_vel_msg = std::make_unique<geometry_msgs::msg::Twist>();
+      cmd_vel_pub->publish(std::move(cmd_vel_msg));
+      sent_disable_msg = true;
+    }
+  }
 }
 
 }  // namespace teleop_twist_joy
