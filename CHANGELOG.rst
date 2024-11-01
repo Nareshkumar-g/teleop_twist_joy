@@ -2,6 +2,54 @@
 Changelog for package teleop_twist_joy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.4.7 (2024-09-09)
+------------------
+* Update the launch file to work with modern joy. (`#52 <https://github.com/ros2/teleop_twist_joy/issues/52>`_) (`#53 <https://github.com/ros2/teleop_twist_joy/issues/53>`_)
+  It should use "device_id" (not "dev") as the parameter,
+  and the parameter should be a number, not a path (this is
+  effectively the SDL device number, which is cross-platform).
+  (cherry picked from commit e4856e4afeda704547bdb43edc29d008b07f15d9)
+  # Conflicts:
+  #	README.md
+  Co-authored-by: Chris Lalancette <clalancette@gmail.com>
+* Contributors: mergify[bot]
+
+2.4.6 (2024-06-17)
+------------------
+* add inverted reverse param (`#35 <https://github.com/ros2/teleop_twist_joy/issues/35>`_) (`#43 <https://github.com/ros2/teleop_twist_joy/issues/43>`_)
+  * add inverted-reverse param
+  (cherry picked from commit 2a5f3e4f776869ae1e981f3ca1877cdf10318f37)
+  # Conflicts:
+  #	src/teleop_twist_joy.cpp
+  Co-authored-by: Máté <56221639+turtlewizard73@users.noreply.github.com>
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Add an option to publish TwistStamped (backport `#42 <https://github.com/ros2/teleop_twist_joy/issues/42>`_) (`#45 <https://github.com/ros2/teleop_twist_joy/issues/45>`_)
+  * Add an option to publish TwistStamped (`#42 <https://github.com/ros2/teleop_twist_joy/issues/42>`_)
+  (cherry picked from commit 76cd6508a8c4e35d9fe3a6a8968abbe7159ffc08)
+  # Conflicts:
+  #	README.md
+  #	src/teleop_twist_joy.cpp
+  * resolved merge conflicts (`#47 <https://github.com/ros2/teleop_twist_joy/issues/47>`_)
+  Co-authored-by: Yannic Bachmann <yannic.bachmann@maha.de>
+  ---------
+  Co-authored-by: Tamaki Nishino <otamachan@gmail.com>
+  Co-authored-by: Yannic Bachmann <76436302+YBachmann@users.noreply.github.com>
+  Co-authored-by: Yannic Bachmann <yannic.bachmann@maha.de>
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+* Added Humble CI (`#50 <https://github.com/ros2/teleop_twist_joy/issues/50>`_)
+* Contributors: Alejandro Hernández Cordero, mergify[bot]
+
+2.4.5 (2023-06-08)
+------------------
+* Cleanup CMakeLists.txt. (`#36 <https://github.com/ros2/teleop_twist_joy/issues/36>`_)
+* Contributors: Chris Lalancette
+
+2.4.4 (2023-06-07)
+------------------
+* Install includes to include/${PROJECT_NAME} (`#30 <https://github.com/ros2/teleop_twist_joy/issues/30>`_)
+* joy_vel argument (`#29 <https://github.com/ros2/teleop_twist_joy/issues/29>`_)
+* Contributors: Raffaello Bonghi, Shane Loretz
+
 2.4.3 (2021-08-02)
 ------------------
 * Fix the launch file to use 'executable'. (`#28 <https://github.com/ros2/teleop_twist_joy/issues/28>`_)
@@ -15,7 +63,7 @@ Changelog for package teleop_twist_joy
 
 2.4.1 (2020-12-01)
 ------------------
-* Add parameter to enable/disable requiring the enable button to be held for motion (`#21 <https://github.com/ros2/teleop_twist_joy/issues/21>`_)
+* Add parameter to enable/disable requiring the enable button to be held for motion (`#21 <https://github.com/ros2/teleop_twist_joy/issues/21>`__)
 * Contributors: Chris Lalancette, kgibsonjca
 
 2.4.0 (2020-11-09)
@@ -62,7 +110,7 @@ Changelog for package teleop_twist_joy
 
 0.1.2 (2016-08-31)
 ------------------
-* Fixed incorrect key. (`#21 <https://github.com/ros-teleop/teleop_twist_joy/issues/21>`_)
+* Fixed incorrect key. (`#21 <https://github.com/ros-teleop/teleop_twist_joy/issues/21>`__)
 * Allow custom config file from location outside of this package
 * Setting scale_angular_turbo if axis_angular is set so that turning works when turbo is pressed.
 * Added turbo scale for angular velocities and accompanying test.
