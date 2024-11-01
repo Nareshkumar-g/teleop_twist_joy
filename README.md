@@ -5,9 +5,9 @@ ros2/teleop_twist_joy
 
 ros2 launch teleop_twist_joy teleop-launch.py joy_config:='ps3-holonomic'
 
-ros2 launch teleop_twist_joy teleop-launch.py joy_config:='ps3-holonomic' require_enable_button:=false
+ros2 launch teleop_twist_joy teleop-launch.py joy_config:='ps3-holonomic' require_enable_button:=false  -- For Holomnomic
 
-
+ros2 launch teleop_twist_joy teleop-launch.py joy_config:='ps3' require_enable_button:=false  -- For Four Wheel drive
 
 
 
