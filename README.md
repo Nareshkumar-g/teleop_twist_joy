@@ -9,6 +9,38 @@ ros2 launch teleop_twist_joy teleop-launch.py joy_config:='ps3-holonomic' requir
 
 ros2 launch teleop_twist_joy teleop-launch.py joy_config:='ps3' require_enable_button:=false  -- For Four Wheel drive
 
+# For Testing Joystick  buttons
+
+sudo apt install joystick  # Install joystick testing tool
+
+jstest /dev/input/js0  
+
+
+# Connecting Bluethooth Device From Terminal
+
+Step 1 : bluetoothctl
+ 
+Step 2 : power on
+
+Step 3 : agent on
+
+Step 4 : 
+
+pairable on
+discoverable on
+
+Step 5 : Put the DualSense Controller in Pairing Mode
+
+Step 6 : scan on
+
+Step 7 : pair 90:B6:85:01:11:BD
+
+Step 8 : trust 90:B6:85:01:11:BD
+
+Step 9 : connect 90:B6:85:01:11:BD
+
+Step 10 : exit
+
 
 
 # Overview
